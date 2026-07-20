@@ -1,4 +1,8 @@
-@import url('https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800;900&family=Inter:wght@400;500;600;700;800&display=swap');
+/* Fonts loaded via <link preload> in index.html for faster rendering */
+
+html {
+  scroll-behavior: smooth;
+}
 
 :root {
   /* SISTec Premium Blue Brand Color System */
@@ -4205,7 +4209,7 @@ p {
 
   /* Video guide */
   .video-mockup-wrapper {
-    width: 240px;
+    width: 280px;
   }
 
   /* Role tabs scroll */
@@ -4376,7 +4380,7 @@ p {
 
   /* Video guide */
   .video-mockup-wrapper {
-    width: 200px;
+    width: 260px;
   }
 
   .video-phone-frame {

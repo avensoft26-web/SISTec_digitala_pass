@@ -6,6 +6,13 @@
   <title>SISTec DIGITAL PASS — Smarter. Safer. Greener.</title>
   <meta name="description" content="A paperless digital gate pass and visitor management system for modern college campuses. Developed for SISTec.">
   <link rel="icon" type="image/jpeg" href="app logo.jpeg">
+
+  <!-- Preconnect for faster font loading -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  
+  <!-- Non-blocking Google Fonts (moved from CSS @import for faster first paint) -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sora:wght@700;800&family=Inter:wght@400;600;700&display=swap" media="print" onload="this.media='all'">
   
   <!-- Open Graph / Facebook / WhatsApp -->
   <meta property="og:type" content="website">
@@ -105,7 +112,7 @@
         
         <div class="mockup-container">
           <div class="hero-image-card">
-            <img src="ChatGPT%20Image%20Jul%206,%202026,%2004_59_46%20PM.png" alt="SISTec Digital Gate Pass System Campus Mockup" decoding="async">
+            <img src="ChatGPT%20Image%20Jul%206,%202026,%2004_59_46%20PM.png" alt="SISTec Digital Gate Pass System Campus Mockup" loading="lazy" decoding="async">
           </div>
         </div>
       </div>
@@ -956,7 +963,7 @@
             </div>
             
             <!-- Video Player -->
-            <video muted controls preload="metadata" onplay="const ov = this.previousElementSibling; if(ov) ov.style.display='none';" style="width: 100%; height: 100%; border-radius: 24px; display: block; background: #000; object-fit: cover; position: relative; z-index: 10;">
+            <video muted controls preload="metadata" onplay="const ov = this.previousElementSibling; if(ov) ov.style.display='none';" style="width: 100%; height: 100%; border-radius: 24px; display: block; background: #000; object-fit: contain; position: relative; z-index: 10;">
               <source src="user guid video.mp4" type="video/mp4">
               Your browser does not support the video tag.
             </video>

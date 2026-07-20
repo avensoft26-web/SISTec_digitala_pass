@@ -371,7 +371,7 @@ function startApkDownload(btn) {
       // Trigger actual file download after 500ms
       setTimeout(() => {
         const a = document.createElement('a');
-        a.href = 'app-release.apk'; // Actual file path to trigger browser download dialog
+        a.href = 'https://github.com/yogeshsaini7172/sistecDigitalPassRelease/releases/latest/download/app-release.apk'; // GitHub Release Link for updated version
         a.download = 'app-release.apk';
         document.body.appendChild(a);
         a.click();

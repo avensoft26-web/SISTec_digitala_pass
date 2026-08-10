@@ -8,7 +8,7 @@
 
 /* ─── Visibility ─── */
 .desktop-only { display: block; }
-.mobile-only { display: none; }
+.mobile-only { display: none !important; }
 
 /* ─── Section Header ─── */
 .wf-header {

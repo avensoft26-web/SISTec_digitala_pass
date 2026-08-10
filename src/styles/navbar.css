@@ -1,0 +1,432 @@
+/* ═══════════════════════════════════════════════
+   World-Class Premium Navbar
+   ═══════════════════════════════════════════════ */
+
+/* Scroll Progress Bar */
+#scroll-bar {
+  display: none; /* User requested removal */
+}
+
+@keyframes progressShimmer {
+  0%   { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+/* ─── Nav Container ─── */
+.nav-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 24px;
+  transition: height 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+              background 0.5s ease,
+              box-shadow 0.5s ease,
+              backdrop-filter 0.5s ease;
+}
+
+/* Scrolled state — frosted glass */
+.nav-container.scrolled {
+  height: 68px;
+  background: var(--nav-bg);
+  backdrop-filter: blur(32px) saturate(1.8);
+  -webkit-backdrop-filter: blur(32px) saturate(1.8);
+  box-shadow:
+    0 1px 0 var(--nav-border),
+    0 8px 32px rgba(0, 0, 0, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.06);
+}
+
+/* Animated gradient bottom border on scroll */
+.nav-container.scrolled::after {
+  display: none; /* User requested removal */
+}
+
+@keyframes borderFlow {
+  0%   { background-position: -100% 0; }
+  100% { background-position: 100% 0; }
+}
+
+/* ═══════════════════════════════════════════════
+   LOGO — World-Class Treatment
+   ═══════════════════════════════════════════════ */
+
+.nav-logo-btn {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  z-index: 10;
+  cursor: pointer;
+  background: none;
+  border: none;
+  padding: 0;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  text-decoration: none;
+  position: relative;
+  height: 100%;
+}
+
+/* Logo wrapper */
+.nav-logo-img-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-shrink: 0;
+  /* Basic full height */
+  height: 80px;
+  width: 140px;
+  transition: width 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+              height 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Scrolled — shrink logo smoothly */
+.nav-container.scrolled .nav-logo-img-wrapper {
+  width: 120px;
+  height: 68px;
+}
+
+/* The logo image itself */
+.nav-logo-img {
+  width: auto;
+  height: 100%;
+  object-fit: contain;
+  mix-blend-mode: multiply;
+  transform: scale(2.2);
+  /* Shift origin slightly down so it doesn't push up past the top of the browser window */
+  transform-origin: left 35%;
+  transition: height 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+              filter 0.3s ease,
+              transform 0.4s ease;
+  position: relative;
+  z-index: 1;
+}
+
+.nav-logo-btn:hover .nav-logo-img {
+  filter: brightness(1.05) contrast(1.05);
+  transform: scale(2.3);
+}
+
+/* Dark mode: remove blend mode and add glow */
+[data-theme="dark"] .nav-logo-img {
+  mix-blend-mode: normal;
+  filter: drop-shadow(0 0 10px rgba(240, 160, 80, 0.25)) brightness(1.1);
+}
+
+[data-theme="dark"] .nav-logo-btn:hover .nav-logo-img {
+  filter: drop-shadow(0 0 16px rgba(240, 160, 80, 0.4)) brightness(1.15);
+}
+
+/* Subtle glow ring behind logo on hover */
+.nav-logo-img-wrapper::before {
+  content: '';
+  position: absolute;
+  inset: 4px;
+  border-radius: 12px;
+  background: radial-gradient(ellipse at center, rgba(192, 112, 40, 0.12), transparent 70%);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  z-index: 0;
+}
+
+.nav-logo-btn:hover .nav-logo-img-wrapper::before {
+  opacity: 1;
+}
+
+/* Logo text — hidden since the image already contains the wordmark */
+.nav-logo-text {
+  display: none;
+}
+
+/* ═══════════════════════════════════════════════
+   FLOATING PILL NAV (Center)
+   ═══════════════════════════════════════════════ */
+
+.floating-pill {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  padding: 5px 8px;
+  border-radius: 50px;
+  background: var(--bg-glass, rgba(255,255,255,0.8));
+  backdrop-filter: blur(32px) saturate(1.8);
+  -webkit-backdrop-filter: blur(32px) saturate(1.8);
+  border: 1px solid var(--border-strong, rgba(0,0,0,0.06));
+  box-shadow:
+    0 2px 20px rgba(0, 0, 0, 0.06),
+    inset 0 1px 0 rgba(255, 255, 255, 0.15);
+  transition: box-shadow 0.3s ease, border-color 0.3s ease;
+  z-index: 20;
+}
+
+.floating-pill:hover {
+  border-color: rgba(192, 112, 40, 0.15);
+  box-shadow:
+    0 4px 28px rgba(192, 112, 40, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.15);
+}
+
+/* Active indicator pill */
+.pill-indicator {
+  position: absolute;
+  top: 5px;
+  height: calc(100% - 10px);
+  border-radius: 50px;
+  background: linear-gradient(135deg, var(--accent-light, rgba(192,112,40,0.08)), rgba(192, 112, 40, 0.15));
+  border: 1px solid var(--grad-border, rgba(192,112,40,0.15));
+  pointer-events: none;
+  z-index: 1;
+  box-shadow: 0 2px 8px rgba(192, 112, 40, 0.12);
+}
+
+/* Nav links */
+.pill-link {
+  padding: 8px 18px;
+  border-radius: 50px;
+  font-size: 13.5px;
+  font-weight: 500;
+  font-family: var(--font-sans);
+  color: var(--text-2);
+  background: transparent;
+  transition: color 0.25s ease;
+  position: relative;
+  z-index: 2;
+  white-space: nowrap;
+  cursor: pointer;
+  border: none;
+  letter-spacing: 0.01em;
+}
+
+.pill-link:hover {
+  color: var(--text);
+}
+
+.pill-link.active {
+  color: var(--accent);
+  font-weight: 700;
+}
+
+/* ═══════════════════════════════════════════════
+   RIGHT ACTIONS
+   ═══════════════════════════════════════════════ */
+
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  z-index: 10;
+}
+
+/* Theme Toggle */
+.theme-toggle {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg-glass, rgba(255,255,255,0.6));
+  backdrop-filter: blur(12px);
+  border: 1px solid var(--border-strong, rgba(0,0,0,0.06));
+  color: var(--text-2);
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+.theme-toggle:hover {
+  transform: scale(1.1) rotate(15deg);
+  color: var(--accent);
+  border-color: rgba(192, 112, 40, 0.2);
+  box-shadow: 0 4px 16px rgba(192, 112, 40, 0.15);
+}
+
+.theme-toggle svg {
+  width: 17px;
+  height: 17px;
+}
+
+/* Download CTA — Premium Gradient Button */
+.btn-nav-cta {
+  padding: 11px 28px;
+  font-size: 13.5px;
+  border-radius: 50px;
+  background: var(--grad);
+  color: #fff;
+  font-weight: 700;
+  font-family: var(--font-display);
+  cursor: pointer;
+  border: none;
+  box-shadow: 
+    0 4px 16px rgba(192, 112, 40, 0.25),
+    0 1px 3px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+  overflow: hidden;
+  letter-spacing: 0.02em;
+}
+
+/* Shimmer sweep */
+.btn-nav-cta::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -75%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    45deg,
+    transparent 30%,
+    rgba(255, 255, 255, 0.25) 50%,
+    transparent 70%
+  );
+  transform: translateX(-100%) rotate(15deg);
+  transition: transform 0.6s ease;
+}
+
+.btn-nav-cta:hover::before {
+  transform: translateX(100%) rotate(15deg);
+}
+
+.btn-nav-cta:hover {
+  transform: translateY(-2px) scale(1.02);
+  box-shadow:
+    0 6px 24px rgba(192, 112, 40, 0.35),
+    0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* ═══════════════════════════════════════════════
+   HAMBURGER (Mobile)
+   ═══════════════════════════════════════════════ */
+
+.hamburger-btn {
+  display: none;
+  width: 42px;
+  height: 42px;
+  border-radius: 12px;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--border-strong, rgba(0,0,0,0.06));
+  background: var(--bg-glass, rgba(255,255,255,0.6));
+  backdrop-filter: blur(12px);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.hamburger-btn:hover {
+  background: var(--accent-light, rgba(192,112,40,0.06));
+  border-color: rgba(192, 112, 40, 0.2);
+}
+
+.hamburger-btn svg {
+  width: 18px;
+  height: 18px;
+  stroke: var(--text);
+  stroke-width: 2;
+  fill: none;
+  transition: all 0.3s ease;
+}
+
+.hamburger-btn:hover svg {
+  stroke: var(--accent);
+}
+
+/* ═══════════════════════════════════════════════
+   MOBILE DRAWER
+   ═══════════════════════════════════════════════ */
+
+.mobile-drawer {
+  position: fixed;
+  top: 80px;
+  right: 0;
+  bottom: 0;
+  width: 300px;
+  background: var(--nav-bg, rgba(255,255,255,0.95));
+  backdrop-filter: blur(40px) saturate(1.8);
+  -webkit-backdrop-filter: blur(40px) saturate(1.8);
+  border-left: 1px solid var(--border-strong, rgba(0,0,0,0.06));
+  z-index: 999;
+  padding: 28px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  box-shadow: -16px 0 48px rgba(0, 0, 0, 0.1);
+}
+
+.drawer-link {
+  padding: 14px 18px;
+  border-radius: 12px;
+  text-align: left;
+  font-size: 15px;
+  font-weight: 600;
+  font-family: var(--font-sans);
+  color: var(--text-2);
+  background: transparent;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  text-decoration: none;
+}
+
+.drawer-link:hover {
+  background: var(--accent-light, rgba(192,112,40,0.06));
+  color: var(--text);
+  border-color: rgba(192, 112, 40, 0.1);
+  transform: translateX(4px);
+}
+
+.drawer-link.active {
+  color: var(--accent);
+  background: var(--accent-light, rgba(192,112,40,0.06));
+  border-color: rgba(192, 112, 40, 0.15);
+}
+
+.drawer-bottom {
+  margin-top: auto;
+  padding-top: 20px;
+  border-top: 1px solid var(--border, rgba(0,0,0,0.06));
+}
+
+.drawer-bottom .btn-nav-cta {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding: 14px;
+  font-size: 14px;
+}
+
+/* ═══════════════════════════════════════════════
+   RESPONSIVE
+   ═══════════════════════════════════════════════ */
+
+@media (max-width: 1024px) {
+  .floating-pill { display: none; }
+  .hide-mobile { display: none !important; }
+  .hamburger-btn { display: flex; }
+
+  .nav-container {
+    padding: 0 20px;
+  }
+
+  .nav-logo-img-wrapper {
+    width: 160px;
+    height: 56px;
+  }
+
+  .nav-container.scrolled .nav-logo-img-wrapper {
+    width: 130px;
+    height: 48px;
+  }
+}
+
+@media (min-width: 1025px) {
+  .hamburger-btn { display: none; }
+}

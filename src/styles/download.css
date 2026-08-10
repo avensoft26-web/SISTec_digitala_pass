@@ -1,0 +1,37 @@
+/* ═══ Download ═══ */
+.download-section { padding: 40px 0 80px; background: var(--bg-alt); border-top: 1px solid var(--border); }
+.download-card-split { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 48px; align-items: center; box-shadow: var(--shadow-card); }
+.download-heading { font-size: clamp(24px, 3vw, 36px); color: var(--text); margin-bottom: 16px; letter-spacing: -0.02em; }
+.download-paragraph { font-size: 15px; color: var(--text-2); line-height: 1.7; margin-bottom: 28px; }
+.app-tech-specs { display: flex; flex-direction: column; gap: 8px; margin-bottom: 24px; }
+.app-spec-item { display: flex; justify-content: space-between; padding: 10px 16px; background: var(--bg-alt); border-radius: var(--radius-xs); border: 1px solid var(--border); }
+.spec-label { font-size: 12px; font-weight: 600; color: var(--text-3); }
+.spec-val { font-size: 12px; font-weight: 800; color: var(--text); }
+.download-feature-checklist { display: flex; flex-direction: column; gap: 10px; }
+.checklist-item { display: flex; align-items: center; gap: 12px; font-size: 14px; font-weight: 600; color: var(--text-2); }
+.check-icon { width: 24px; height: 24px; border-radius: 50%; background: rgba(5, 150, 105, 0.1); color: var(--accent-green); display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 800; flex-shrink: 0; }
+
+/* Installer Mockup */
+.download-action-side { display: flex; justify-content: center; }
+.installer-box { width: 100%; max-width: 380px; background: var(--bg-alt); border: 1px solid var(--border-strong); border-radius: var(--radius-lg); padding: 32px; box-shadow: var(--shadow-lg); text-align: center; }
+.installer-app-info { display: flex; align-items: center; gap: 16px; margin-bottom: 24px; text-align: left; }
+.installer-icon-wrapper { width: 64px; height: 64px; border-radius: 14px; overflow: hidden; box-shadow: var(--shadow-card); flex-shrink: 0; }
+.installer-icon-wrapper img { width: 100%; height: 100%; object-fit: cover; }
+.installer-app-title { font-size: 16px; font-weight: 800; color: var(--text); font-family: var(--font-display); display: block; }
+.installer-app-meta { font-size: 12px; color: var(--text-3); font-weight: 600; margin-top: 2px; }
+.installer-rating { font-size: 11px; color: var(--accent-gold); margin-top: 4px; font-weight: 700; }
+.installer-btn { width: 100%; padding: 16px; background: var(--grad); color: #fff; border: none; border-radius: var(--radius-sm); font-size: 15px; font-weight: 700; font-family: var(--font-display); cursor: pointer; box-shadow: var(--shadow-button); transition: var(--transition); display: flex; flex-direction: column; align-items: center; gap: 4px; position: relative; overflow: hidden; }
+.installer-btn .btn-text { font-size: 15px; font-weight: 700; }
+.installer-btn .btn-subtext { font-size: 11px; font-weight: 500; opacity: 0.8; }
+.installer-btn::before { content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%; background: linear-gradient(45deg, transparent 30%, rgba(255,255,255,0.12) 50%, transparent 70%); transform: translateX(-100%); transition: transform 0.6s; }
+.installer-btn:hover::before { transform: translateX(100%); }
+.installer-btn:hover { transform: translateY(-2px); box-shadow: var(--shadow-button-hover); }
+.installer-progress-container { margin-top: 20px; }
+.progress-bar-status { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
+.progress-bar-status span { font-size: 12px; font-weight: 700; color: var(--accent); }
+.progress-spinner { width: 14px; height: 14px; border: 2px solid var(--accent-light); border-top-color: var(--accent); border-radius: 50%; animation: spin 0.8s linear infinite; }
+.progress-bar-track { width: 100%; height: 6px; background: var(--border); border-radius: 100px; overflow: hidden; }
+.progress-bar-fill { height: 100%; background: var(--grad); border-radius: 100px; transition: width 0.3s ease; }
+.installer-security-info { margin-top: 16px; font-size: 11px; color: var(--text-3); font-weight: 600; }
+
+@media (max-width: 900px) { .download-card-split { grid-template-columns: 1fr; padding: 28px; } }

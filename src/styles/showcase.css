@@ -1,0 +1,726 @@
+/* ═══ App Showcase / App Tour ═══ */
+
+.showcase-section {
+  padding: var(--section-padding);
+  background: var(--bg-alt);
+  border-top: 1px solid var(--border);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Subtle bg texture */
+.showcase-section::before {
+  content: '';
+  position: absolute;
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, var(--accent-light) 0%, transparent 70%);
+  top: -200px;
+  left: -200px;
+  filter: blur(80px);
+  pointer-events: none;
+  opacity: 0.5;
+}
+
+/* ─── Responsive Utilities ─── */
+.mobile-only {
+  display: none !important;
+}
+
+/* ─── Grid Layout ─── */
+.showcase-grid {
+  display: grid;
+  grid-template-columns: 1fr 380px;
+  gap: 64px;
+  align-items: start;
+  position: relative;
+  z-index: 1;
+}
+
+/* ─── Showcase Menu (Left) ─── */
+.showcase-menu {
+  display: flex;
+  flex-direction: column;
+  gap: 12px; /* Increased gap for floating cards */
+  position: sticky;
+  top: 100px;
+}
+
+/* ─── Watermark Typography ─── */
+.showcase-watermark {
+  position: absolute;
+  top: -60px;
+  left: -40px;
+  color: var(--accent);
+  opacity: 0.04;
+  z-index: 0;
+  pointer-events: none;
+  user-select: none;
+  animation: watermarkFade 0.6s ease-out forwards;
+}
+.showcase-watermark svg {
+  width: 360px;
+  height: 360px;
+}
+@keyframes watermarkFade {
+  0% { opacity: 0; transform: translateY(20px) scale(0.95); }
+  100% { opacity: 0.03; transform: translateY(0) scale(1); }
+}
+[data-theme="dark"] .showcase-watermark {
+  opacity: 0.02;
+}
+
+/* ─── Timeline Track ─── */
+.timeline-track {
+  position: absolute;
+  left: 21px; /* Center of the dot */
+  top: 40px;
+  bottom: 40px;
+  width: 2px;
+  background: linear-gradient(180deg, transparent, var(--border-strong) 10%, var(--border-strong) 90%, transparent);
+  z-index: 1;
+}
+
+/* Feature Row Wrapper */
+.showcase-feature-row {
+  position: relative;
+  z-index: 2;
+}
+
+/* Showcase Item Button (Glassmorphism Card) */
+.showcase-item-btn {
+  width: 100%;
+  text-align: left;
+  padding: 24px;
+  border-radius: var(--radius-lg);
+  background: var(--bg-glass);
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  font-family: var(--font-sans);
+  color: var(--text-2);
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+  position: relative;
+  overflow: hidden;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+/* Glowing Border on Active */
+.showcase-item-btn::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: var(--radius-lg);
+  padding: 1.5px; /* Border thickness */
+  background: var(--grad);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+}
+
+.showcase-item-btn:hover {
+  background: var(--bg-card);
+  transform: translateX(6px);
+}
+
+.showcase-item-btn.active {
+  background: var(--bg-card);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.1), inset 0 0 0 1px rgba(192, 112, 40, 0.05);
+  color: var(--text);
+  transform: translateX(12px);
+}
+
+.showcase-item-btn.active::before {
+  opacity: 1; /* Reveal glowing border */
+}
+
+/* Timeline Dot */
+.timeline-dot {
+  position: absolute;
+  left: -27px; /* Align over track */
+  top: 36px;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--bg-alt);
+  border: 2px solid var(--border-strong);
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  z-index: 3;
+}
+
+.showcase-item-btn.active .timeline-dot {
+  background: var(--accent);
+  border-color: var(--accent);
+  box-shadow: 0 0 12px var(--accent);
+  transform: scale(1.2);
+}
+
+/* Icon Box */
+.showcase-icon-box {
+  width: 48px;
+  height: 48px;
+  border-radius: 14px;
+  background: var(--bg-alt);
+  border: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  color: var(--text-2);
+}
+
+.showcase-icon-box svg {
+  width: 22px;
+  height: 22px;
+  transition: all 0.3s ease;
+}
+
+.showcase-item-btn.active .showcase-icon-box {
+  background: var(--grad);
+  border-color: transparent;
+  color: #fff;
+  box-shadow: 0 8px 24px rgba(192, 112, 40, 0.3);
+  transform: scale(1.05);
+}
+
+.showcase-item-btn.active .showcase-icon-box svg {
+  transform: scale(1.1);
+}
+
+.showcase-item-btn.active .showcase-num {
+  background: var(--grad);
+  color: #fff;
+  border-color: transparent;
+  box-shadow: 0 4px 16px rgba(192, 112, 40, 0.4);
+}
+
+/* Text Content */
+.showcase-txt {
+  flex: 1;
+  min-width: 0;
+}
+
+.showcase-txt h3 {
+  font-size: 18px;
+  font-weight: 800;
+  font-family: var(--font-display);
+  color: var(--text);
+  margin-bottom: 8px;
+  line-height: 1.2;
+  transition: color 0.3s ease;
+}
+
+.showcase-item-btn.active .showcase-txt h3 {
+  background: var(--grad);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.showcase-txt p {
+  font-size: 14px;
+  color: var(--text-2);
+  line-height: 1.6;
+  font-weight: 400;
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.showcase-item-btn.active .showcase-txt p {
+  max-height: 120px;
+  opacity: 1;
+  margin-top: 8px;
+}
+
+/* ─── Phone Mockup (Right) ─── */
+.phone-mockup-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  position: sticky;
+  top: 120px;
+}
+
+/* Glow behind phone */
+.phone-mockup-wrapper::before {
+  content: '';
+  position: absolute;
+  width: 80%;
+  height: 80%;
+  background: radial-gradient(ellipse, rgba(192, 112, 40, 0.15) 0%, transparent 70%);
+  filter: blur(30px);
+  top: 10%;
+  left: 10%;
+  z-index: -1;
+  animation: phonePulse 4s ease-in-out infinite;
+}
+
+@keyframes phonePulse {
+
+  0%,
+  100% {
+    opacity: 0.6;
+    transform: scale(1);
+  }
+
+  50% {
+    opacity: 1;
+    transform: scale(1.05);
+  }
+}
+
+/* Flat Black Classic iPhone Frame */
+.phone-frame {
+  position: relative;
+  width: 280px;
+  height: 580px;
+  background: var(--bg);
+  border: 8px solid var(--phone-frame-color);
+  border-radius: 40px;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.15);
+  overflow: visible; /* Need visible for side buttons */
+  animation: phoneBob 5s ease-in-out infinite;
+}
+
+@keyframes phoneBob {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+/* Classic Notch */
+.phone-frame::before {
+  content: '';
+  position: absolute;
+  top: -1px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 130px;
+  height: 26px;
+  background: var(--phone-frame-color);
+  border-radius: 0 0 18px 18px;
+  z-index: 20;
+}
+
+/* Side Buttons (Left - Volume) */
+.phone-frame::after {
+  content: '';
+  position: absolute;
+  top: 100px;
+  left: -11px;
+  width: 3px;
+  height: 40px;
+  background: var(--phone-frame-color);
+  border-radius: 4px 0 0 4px;
+  box-shadow: 0 55px 0 var(--phone-frame-color); /* Second volume button */
+}
+
+/* Power Button (Right) */
+.phone-screen::after {
+  content: '';
+  position: absolute;
+  top: 120px;
+  right: -11px;
+  width: 3px;
+  height: 55px;
+  background: var(--phone-frame-color);
+  border-radius: 0 4px 4px 0;
+}
+
+/* Screen */
+.phone-screen {
+  width: 100%;
+  height: 100%;
+  background: var(--bg);
+  border-radius: 34px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  font-size: 11px;
+  position: relative;
+}
+
+/* Status Bar */
+.phone-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 16px 6px;
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--text);
+  font-family: var(--font-display);
+  position: relative;
+  z-index: 5;
+  background: var(--bg);
+  padding-top: 14px;
+}
+
+/* Screen Content */
+.screen-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 10px 12px 12px;
+  overflow-y: auto;
+  color: var(--text-2);
+  scrollbar-width: none;
+}
+
+.screen-content::-webkit-scrollbar {
+  display: none;
+}
+
+/* App Bar inside phone */
+.app-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 0 12px;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 12px;
+}
+
+.app-bar h4 {
+  font-size: 13px;
+  font-weight: 800;
+  color: var(--text);
+  font-family: var(--font-display);
+  letter-spacing: -0.01em;
+}
+
+/* Quick Actions */
+.quick-actions {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 6px;
+  margin-bottom: 14px;
+}
+
+.action-tile {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 10px 6px 8px;
+  text-align: center;
+  font-size: 9px;
+  font-weight: 700;
+  color: var(--text);
+  box-shadow: var(--shadow-sm);
+  cursor: pointer;
+  transition: var(--transition-fast);
+}
+
+.action-tile:hover {
+  border-color: var(--grad-border);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-md);
+}
+
+.action-tile-icon {
+  font-size: 16px;
+  margin-bottom: 4px;
+  line-height: 1;
+}
+
+/* Search Bar */
+.mock-search-bar {
+  padding: 8px 10px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  font-size: 10px;
+  color: var(--text-3);
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* List Items */
+.native-list-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  margin-bottom: 6px;
+  box-shadow: var(--shadow-sm);
+  transition: var(--transition-fast);
+}
+
+.native-list-item:hover {
+  border-color: var(--grad-border);
+  box-shadow: var(--shadow-md);
+}
+
+.native-student-name {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--text);
+  font-family: var(--font-display);
+}
+
+/* Badges */
+.native-badge {
+  padding: 3px 10px;
+  border-radius: var(--radius-full);
+  font-size: 8px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.native-badge-pending {
+  background: rgba(217, 119, 6, 0.12);
+  color: var(--status-pending);
+  border: 1px solid rgba(217, 119, 6, 0.2);
+}
+
+.native-badge-meet {
+  background: var(--accent-light);
+  color: var(--accent);
+  border: 1px solid var(--grad-border);
+}
+
+.native-badge-exit {
+  background: rgba(5, 150, 105, 0.1);
+  color: var(--accent-green);
+  border: 1px solid rgba(5, 150, 105, 0.2);
+}
+
+/* FAB */
+.native-fab {
+  position: absolute;
+  bottom: 18px;
+  right: 18px;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--grad);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  font-weight: 300;
+  box-shadow: var(--shadow-button);
+  cursor: pointer;
+  transition: var(--transition-fast);
+}
+
+.native-fab:hover {
+  transform: scale(1.1);
+  box-shadow: var(--shadow-button-hover);
+}
+
+/* Form Elements */
+.native-details-box {
+  background: var(--bg-card);
+  border-radius: var(--radius-sm);
+  padding: 16px;
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-sm);
+  text-align: center;
+}
+
+.native-form-group {
+  margin-bottom: 10px;
+  text-align: left;
+}
+
+.native-form-group label {
+  font-size: 9px;
+  font-weight: 800;
+  color: var(--text-3);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  display: block;
+  margin-bottom: 4px;
+  font-family: var(--font-display);
+}
+
+.native-input {
+  width: 100%;
+  padding: 7px 10px;
+  border: 1px solid var(--border-strong);
+  border-radius: 8px;
+  font-size: 11px;
+  font-family: var(--font-sans);
+  color: var(--text);
+  background: var(--bg);
+  outline: none;
+  transition: var(--transition-fast);
+}
+
+.native-input:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-light);
+}
+
+.native-btn {
+  width: 100%;
+  padding: 10px;
+  background: var(--grad);
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  font-size: 11px;
+  font-weight: 800;
+  font-family: var(--font-display);
+  cursor: default;
+  box-shadow: var(--shadow-button);
+  letter-spacing: 0.02em;
+}
+
+.native-btn-secondary {
+  background: var(--accent-light);
+  color: var(--accent);
+  box-shadow: none;
+  border: 1px solid var(--grad-border);
+}
+
+/* ─── Responsive ─── */
+@media (max-width: 1024px) {
+  .showcase-grid {
+    grid-template-columns: 1fr 320px;
+    gap: 40px;
+  }
+
+  .phone-frame {
+    width: 260px;
+    height: 540px;
+  }
+}
+
+@media (max-width: 860px) {
+  .showcase-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 48px;
+  }
+
+  .desktop-only { display: none !important; }
+  .mobile-only { display: flex !important; }
+
+  /* ─── Premium Mobile Icon Nav (Top) ─── */
+  .mobile-icon-nav {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    background: var(--bg-card);
+    border-radius: 100px;
+    padding: 6px;
+    margin: 0 auto 32px auto;
+    border: 1px solid var(--border-strong);
+    box-shadow: var(--shadow-sm), inset 0 0 0 1px rgba(192, 112, 40, 0.05);
+    order: 0;
+    width: 100%;
+    max-width: 340px;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+  }
+
+  .mobile-icon-btn {
+    flex: 1;
+    height: 44px;
+    border-radius: 100px;
+    background: transparent;
+    border: none;
+    color: var(--text-2);
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .mobile-icon-btn svg {
+    width: 20px;
+    height: 20px;
+    transition: all 0.3s ease;
+  }
+
+  .mobile-icon-btn.active {
+    background: var(--grad);
+    color: #fff;
+    box-shadow: 0 4px 16px rgba(192, 112, 40, 0.35);
+    transform: scale(1.05);
+  }
+
+  .mobile-icon-btn.active svg {
+    transform: scale(1.1);
+  }
+
+  /* ─── Premium Mobile Feature Text (Bottom) ─── */
+  .mobile-feature-details {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    order: 2;
+    margin-top: 16px; /* Reduced gap from phone */
+    width: 100%;
+  }
+
+  .mobile-feature-card {
+    background: var(--bg-glass);
+    border-radius: 24px;
+    padding: 24px 20px; /* Adjusted padding */
+    border: 1px solid var(--border);
+    box-shadow: 0 24px 50px rgba(0, 0, 0, 0.2), inset 0 0 0 1px rgba(192, 112, 40, 0.1);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    width: 100%;
+    max-width: 100%; /* Spans full width */
+    margin: 0;
+  }
+
+  .mobile-feature-card h3 {
+    font-size: 22px;
+    font-weight: 800;
+    font-family: var(--font-display);
+    color: var(--text);
+    margin-bottom: 12px;
+    background: var(--grad);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    letter-spacing: -0.02em;
+  }
+
+  .mobile-feature-card p {
+    font-size: 15px;
+    color: var(--text-2);
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  .phone-mockup-wrapper {
+    position: static;
+    justify-content: center;
+    order: 1; /* Bring phone to the top */
+    width: 100%;
+    margin-bottom: 0px; /* Remove extra gap */
+  }
+
+  .showcase-menu {
+    order: 2; /* Put menu below the phone */
+  }
+}
+
+@media (max-width: 480px) {
+  .phone-frame {
+    width: 240px;
+    height: 500px;
+  }
+}

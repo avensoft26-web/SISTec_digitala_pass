@@ -38,6 +38,7 @@ export default function Footer() {
                   Deepak's Portfolio
                 </a>
               </li>
+              <li><a href="https://yogeshsaini7172.github.io/digitalPassWeb/" target="_blank" rel="noopener noreferrer">Team Avensoft Main Server</a></li>
             </ul>
           </div>
         </div>

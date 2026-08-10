@@ -3,11 +3,13 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import '../styles/team.css';
 
+const base = import.meta.env.BASE_URL;
+
 const team = [
-  { name: 'Yogesh Saini', role: 'Lead Developer', desc: 'CSE Student. Managed Android application development, database design, and architecture.', photo: '/yogesh.jpeg' },
-  { name: 'Sandeep Kumar Maurya', role: 'UI/UX Designer', desc: 'CSE Student. Designed user workflows, interface prototypes, and visual assets.', photo: '/sandeep.jpeg' },
-  { name: 'Deepak Kumar', role: 'Backend Developer', desc: 'CSE Student. Worked on server APIs, verification logic, and database schemas.', photo: '/deepak.jpeg', portfolio: 'https://deepak-portfolioc.netlify.app/' },
-  { name: 'Utkarsh Mani Mishra', role: 'System Tester', desc: 'CSE Student. Handled QA testing, pilot runs, security audits, and deployment documentation.', photo: '/utkarsh.jpeg' },
+  { name: 'Yogesh Saini', role: 'Lead Developer', desc: 'CSE Student. Managed Android application development, database design, and architecture.', photo: `${base}yogesh.jpeg` },
+  { name: 'Sandeep Kumar Maurya', role: 'UI/UX Designer', desc: 'CSE Student. Designed user workflows, interface prototypes, and visual assets.', photo: `${base}sandeep.jpeg` },
+  { name: 'Deepak Kumar', role: 'Backend Developer', desc: 'CSE Student. Worked on server APIs, verification logic, and database schemas.', photo: `${base}deepak.jpeg`, portfolio: 'https://deepak-portfolioc.netlify.app/' },
+  { name: 'Utkarsh Mani Mishra', role: 'System Tester', desc: 'CSE Student. Handled QA testing, pilot runs, security audits, and deployment documentation.', photo: `${base}utkarsh.jpeg` },
 ];
 
 export default function TeamSection() {

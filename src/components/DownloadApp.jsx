@@ -66,7 +66,7 @@ export default function DownloadApp() {
             <div className="installer-box">
               <div className="installer-app-info">
                 <div className="installer-icon-wrapper">
-                  <img src="/app-logo.jpeg" alt="SISTec Digital Pass Logo" />
+                  <img src={`${import.meta.env.BASE_URL}app-logo.jpeg`} alt="SISTec Digital Pass Logo" />
                 </div>
                 <div>
                   <strong className="installer-app-title">SISTec DIGITAL PASS</strong>

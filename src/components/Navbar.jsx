@@ -127,7 +127,7 @@ export default function Navbar({ dark, setDark }) {
         {/* Logo */}
         <button className="nav-logo-btn" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
           <div className="nav-logo-img-wrapper">
-            <img src="/PhotoshopExtension_Image.png" alt="SISTec Digital Pass" className="nav-logo-img" />
+            <img src={`${import.meta.env.BASE_URL}PhotoshopExtension_Image.png`} alt="SISTec Digital Pass" className="nav-logo-img" />
           </div>
         </button>
 

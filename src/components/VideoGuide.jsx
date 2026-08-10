@@ -76,7 +76,7 @@ export default function VideoGuide() {
                   onPlaying={() => setLoaded(true)}
                   style={{width:'100%',height:'100%',display:'block',objectFit:'contain',background:'#000',position:'relative',zIndex:11}}
                 >
-                  <source src="/user_guide.mp4" type="video/mp4" />
+                  <source src={`${import.meta.env.BASE_URL}user_guide.mp4`} type="video/mp4" />
                   Your browser does not support the video tag.
                 </video>
               </div>

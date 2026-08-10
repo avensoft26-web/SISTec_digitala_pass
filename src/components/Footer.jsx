@@ -7,7 +7,7 @@ export default function Footer() {
         <div className="footer-grid">
           <div className="footer-brand">
             <div className="footer-logo-box">
-              <img src="/logo.png" alt="SISTec Digital Pass Logo" />
+              <img src={`${import.meta.env.BASE_URL}logo.png`} alt="SISTec Digital Pass Logo" />
             </div>
             <p style={{ fontSize: '14px', lineHeight: 1.7, maxWidth: '300px' }}>SISTec Digital Gate Pass System is a unified platform simplifying and securing campus access with digital workflows.</p>
           </div>

@@ -4,8 +4,6 @@ import { useInView } from 'react-intersection-observer';
 import '../styles/video.css';
 
 export default function VideoGuide() {
-  const [loaded, setLoaded] = useState(false);
-  const videoRef = useRef(null);
   const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.1 });
 
   return (
@@ -59,26 +57,14 @@ export default function VideoGuide() {
                 <div style={{width:'36px'}} />
               </div>
               <div className="video-viewport">
-                {!loaded && (
-                  <div className="video-loader">
-                    <div className="video-spinner" />
-                    <span className="video-loader-text">Loading Walkthrough...</span>
-                  </div>
-                )}
-                <video
-                  ref={videoRef}
-                  autoPlay
-                  loop
-                  muted
-                  playsInline
-                  controls
-                  preload="auto"
-                  onPlaying={() => setLoaded(true)}
-                  style={{width:'100%',height:'100%',display:'block',objectFit:'contain',background:'#000',position:'relative',zIndex:11}}
-                >
-                  <source src={`${import.meta.env.BASE_URL}user_guide.mp4`} type="video/mp4" />
-                  Your browser does not support the video tag.
-                </video>
+                <iframe
+                  src="https://www.youtube.com/embed/NrBc7qjgI5Q?rel=0&modestbranding=1"
+                  title="SISTec Digital Pass - App Demo by Team Avensoft"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                  loading="lazy"
+                  style={{width:'100%',height:'100%',border:'none',position:'relative',zIndex:11}}
+                />
               </div>
             </div>
           </motion.div>

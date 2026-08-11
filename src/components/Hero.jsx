@@ -73,7 +73,7 @@ export default function Hero() {
             transition={{ duration: 0.8, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
           >
             <div className="hero-image-card">
-              <img src={`${import.meta.env.BASE_URL}hero-mockup.png`} alt="SISTec Digital Gate Pass System Campus Mockup" />
+              <img src={`${import.meta.env.BASE_URL}hero-mockup.png`} alt="SISTec Digital Gate Pass System Campus Mockup" decoding="async" />
             </div>
           </motion.div>
         </div>

@@ -39,6 +39,7 @@ export default function Footer() {
                 </a>
               </li>
               <li><a href="https://yogeshsaini7172.github.io/digitalPassWeb/" target="_blank" rel="noopener noreferrer">Team Avensoft Main Server</a></li>
+              <li><a href="https://github.com/avensoft26-web/SISTec_digitala_pass" target="_blank" rel="noopener noreferrer">Avensoft Official Repo</a></li>
             </ul>
           </div>
         </div>
